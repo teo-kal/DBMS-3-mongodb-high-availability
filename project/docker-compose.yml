@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  mongo1:
+    image: mongo:8.0
+    container_name: mongo1
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27021:27017"
+    volumes:
+      - mongo1_data:/data/db
+      - mongo1_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+  mongo2:
+    image: mongo:8.0
+    container_name: mongo2
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27022:27017"
+    volumes:
+      - mongo2_data:/data/db
+      - mongo2_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+  mongo3:
+    image: mongo:8.0
+    container_name: mongo3
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27023:27017"
+    volumes:
+      - mongo3_data:/data/db
+      - mongo3_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+  mongo4:
+    image: mongo:8.0
+    container_name: mongo4
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27024:27017"
+    volumes:
+      - mongo4_data:/data/db
+      - mongo4_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+  mongo5:
+    image: mongo:8.0
+    container_name: mongo5
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27025:27017"
+    volumes:
+      - mongo5_data:/data/db
+      - mongo5_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+# demonstracija - dodavanje mongo6 u Replica Set
+  mongo6:
+    image: mongo:8.0
+    container_name: mongo6
+    command: mongod --replSet rs0 --bind_ip_all
+    ports:
+      - "127.0.0.1:27026:27017"
+    volumes:
+      - mongo6_data:/data/db
+      - mongo6_config:/data/configdb
+    networks:
+      - mongo-network
+    restart: unless-stopped
+
+volumes:
+  mongo1_data:
+  mongo1_config:
+  mongo2_data:
+  mongo2_config:
+  mongo3_data:
+  mongo3_config:  
+  mongo4_data:
+  mongo4_config:
+  mongo5_data:
+  mongo5_config:
+# demonstracija - dodavanje mongo6 u Replica Set
+  mongo6_data:
+  mongo6_config:
+
+networks:
+  mongo-network:
+    driver: bridge
+
